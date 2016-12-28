@@ -19,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,25 +40,26 @@ public class UserDetails
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
+	@OneToOne
+	@JoinColumn(name="vehicle_id")
+	private Vehicle vehicle;
 	
-	@ElementCollection(fetch=FetchType.EAGER)
-	@JoinTable(name="user_address_list" , joinColumns=@JoinColumn(name="user_id"))
-	@GenericGenerator(name="sequence-gen", strategy="org.hibernate.id.enhanced.SequenceStyleGenerator")
-	@CollectionId(columns = { @Column(name="address_id") }, generator = "sequence-gen", type = @Type(type="long"))
-	private Collection<Address> addressList= new ArrayList<Address>();
 	
+	public Vehicle getVehicle()
+	{
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle)
+	{
+		this.vehicle = vehicle;
+	}
+
 	public Date getJoiningDate()
 	{
 		return joiningDate;
 	}
-	public Collection<Address> getAddressList()
-	{
-		return addressList;
-	}
-	public void setAddressList(Collection<Address> addressList)
-	{
-		this.addressList = addressList;
-	}
+	
 	public void setJoiningDate(Date joiningDate)
 	{
 		this.joiningDate = joiningDate;
