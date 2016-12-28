@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public class UserDetails
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
 	
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="user_address_list" , joinColumns=@JoinColumn(name="user_id"))
 	@GenericGenerator(name="sequence-gen", strategy="org.hibernate.id.enhanced.SequenceStyleGenerator")
 	@CollectionId(columns = { @Column(name="address_id") }, generator = "sequence-gen", type = @Type(type="long"))
