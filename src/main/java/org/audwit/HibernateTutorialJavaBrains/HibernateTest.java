@@ -16,33 +16,23 @@ public class HibernateTest
         user.setUserName("Audwit");
         user.setJoiningDate(new Date());
         
-        Address address = new Address();
-        address.setCity("Dallas");
-        address.setState(null);
-        address.setStreet("7220 McCallum BLVD");
-        address.setZip(75252);
+        Address address1 = new Address();
+        Address address2 = new Address();
         
-        user.setHomeAddress(address);
+        address1.setCity("Dhaka");
+        address1.setState("Dhaka Bibhag");
         
-        address.setCity("Dallas");
-        address.setState("Texas");
-        address.setStreet("13251 Emily Road");
-        address.setZip(75240);
+        address2.setCity("Manikganj");
+        address2.setState("Dhaka Bibhag");
         
-        user.setOfficeAddress(address);
+        user.getAddressList().add(address1);
+        user.getAddressList().add(address2);
         
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
-        session.close();
-        
-        user = null;
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-        user = (UserDetails)session.get(UserDetails.class, 1);
-        System.out.println(user.getUserName());
         session.close();
         System.exit(0);
     }

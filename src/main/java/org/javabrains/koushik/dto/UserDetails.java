@@ -1,10 +1,15 @@
 package org.javabrains.koushik.dto;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,34 +31,15 @@ public class UserDetails
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
-	
-	@Embedded
-	@AttributeOverrides
-	({
-	@AttributeOverride(name="street", column=@Column(name="home_street_name")),
-	@AttributeOverride(name="city", column=@Column(name="home_city_name")),
-	@AttributeOverride(name="state", column=@Column(name="home_state_name")),
-	@AttributeOverride(name="zip", column=@Column(name="home_zip_name"))
-	})
-	private Address homeAddress;
-	@Embedded
-	private Address officeAddress;
-	
-	public Address getHomeAddress()
+	@ElementCollection
+	private Set<Address> addressList= new HashSet();
+	public Set<Address> getAddressList()
 	{
-		return homeAddress;
+		return addressList;
 	}
-	public void setHomeAddress(Address homeAddress)
+	public void setAddressList(Set<Address> addressList)
 	{
-		this.homeAddress = homeAddress;
-	}
-	public Address getOfficeAddress()
-	{
-		return officeAddress;
-	}
-	public void setOfficeAddress(Address officeAddress)
-	{
-		this.officeAddress = officeAddress;
+		this.addressList = addressList;
 	}
 	public Date getJoiningDate()
 	{
