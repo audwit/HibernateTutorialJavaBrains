@@ -8,7 +8,8 @@ public class Address
 	private String street;
 	private String city;
 	private String state;
-	private int zip;
+	private String zip;
+	
 	public String getStreet()
 	{
 		return street;
@@ -33,11 +34,11 @@ public class Address
 	{
 		this.state = state;
 	}
-	public int getZip()
+	public String getZip()
 	{
 		return zip;
 	}
-	public void setZip(int zip)
+	public void setZip(String zip)
 	{
 		this.zip = zip;
 	}

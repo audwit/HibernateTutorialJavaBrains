@@ -21,9 +21,11 @@ public class HibernateTest
         
         address1.setCity("Dhaka");
         address1.setState("Dhaka Bibhag");
+        //address1.setZip(1);
         
         address2.setCity("Manikganj");
         address2.setState("Dhaka Bibhag");
+        //address1.setZip(2);
         
         user.getAddressList().add(address1);
         user.getAddressList().add(address2);
