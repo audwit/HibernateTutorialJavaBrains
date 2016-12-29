@@ -18,7 +18,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,8 +43,10 @@ public class UserDetails
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
-	@OneToMany(mappedBy="user")
-	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
+	@ManyToMany
+	@JoinTable(name="user_vehicle", joinColumns=@JoinColumn(name="user_id"),
+									inverseJoinColumns=@JoinColumn(name="vehicle_id"))
+	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	
 	public Date getJoiningDate()
 	{
@@ -51,12 +55,12 @@ public class UserDetails
 	
 	public Collection<Vehicle> getVehicle()
 	{
-		return vehicle;
+		return vehicleList;
 	}
 
 	public void setVehicle(Collection<Vehicle> vehicle)
 	{
-		this.vehicle = vehicle;
+		this.vehicleList = vehicle;
 	}
 
 	public void setJoiningDate(Date joiningDate)

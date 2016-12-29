@@ -1,11 +1,15 @@
 package org.javabrains.koushik.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,17 +19,16 @@ public class Vehicle
 	@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private UserDetails user;
+	@ManyToMany(mappedBy="vehicleList")
+	private Collection<UserDetails> userList = new ArrayList<UserDetails>();
 	
-	public UserDetails getUser()
+	public Collection<UserDetails> getUserList()
 	{
-		return user;
+		return userList;
 	}
-	public void setUser(UserDetails user)
+	public void setUser(Collection<UserDetails> user)
 	{
-		this.user = user;
+		this.userList = user;
 	}
 	public int getVehicleId()
 	{

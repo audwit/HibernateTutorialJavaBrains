@@ -13,28 +13,34 @@ public class HibernateTest
 {
     public static void main( String[] args )
     {
-        UserDetails user = new UserDetails();
-        user.setUserName("Audwit");
-        user.setJoiningDate(new Date());
+        UserDetails user1 = new UserDetails();
+        user1.setUserName("Audwit");
+        user1.setJoiningDate(new Date());
         
-        Vehicle vehicle = new Vehicle();
-        vehicle.setUser(user);  // For each vehicle setting the user as well so that user can be found from vehicle table
-        vehicle.setVehicleName("Camry");
+        UserDetails user2 = new UserDetails();
+        user2.setUserName("Faru");
+        user2.setJoiningDate(new Date());
+        
+        Vehicle vehicle1 = new Vehicle();
+        vehicle1.setVehicleName("Camry");
         
         Vehicle vehicle2 = new Vehicle();
-        vehicle2.setUser(user);
-        vehicle2.setVehicleName("BMW");
+        vehicle2.setVehicleName("Mercedez");
         
-        user.getVehicle().add(vehicle);
-        user.getVehicle().add(vehicle2);
+        user1.getVehicle().add(vehicle1);
+        user1.getVehicle().add(vehicle2);
+        
+        vehicle1.getUserList().add(user1);
+        vehicle2.getUserList().add(user1);
+        
         
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(vehicle);
+        session.save(vehicle1);
         session.save(vehicle2);
-        session.save(user);
-        
+        session.save(user1);
+        session.save(user2);
         
         session.getTransaction().commit();
         session.close();
