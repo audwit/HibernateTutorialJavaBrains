@@ -18,9 +18,11 @@ public class HibernateTest
         user.setJoiningDate(new Date());
         
         Vehicle vehicle = new Vehicle();
+        vehicle.setUser(user);  // For each vehicle setting the user as well so that user can be found from vehicle table
         vehicle.setVehicleName("Camry");
         
         Vehicle vehicle2 = new Vehicle();
+        vehicle2.setUser(user);
         vehicle2.setVehicleName("BMW");
         
         user.getVehicle().add(vehicle);
