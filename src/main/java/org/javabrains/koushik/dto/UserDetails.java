@@ -41,9 +41,7 @@ public class UserDetails
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
-	@OneToMany
-	@JoinTable(name="user_vehicle", joinColumns= @JoinColumn(name="user_id"), 
-									inverseJoinColumns=@JoinColumn(name="vehicle_id"))
+	@OneToMany(mappedBy="user")
 	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 	
 	public Date getJoiningDate()
