@@ -24,11 +24,15 @@ public class HibernateTest
         fourWheeler.setVehicleName("BMW");
         fourWheeler.setWheelSteering("Wheel Steering");
         
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Car");
+        
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(twoWheeler);
         session.save(fourWheeler);
+        session.save(vehicle);
         
         session.getTransaction().commit();
         session.close();
