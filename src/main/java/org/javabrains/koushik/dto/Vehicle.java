@@ -19,17 +19,7 @@ public class Vehicle
 	@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToMany(mappedBy="vehicleList")
-	private Collection<UserDetails> userList = new ArrayList<UserDetails>();
 	
-	public Collection<UserDetails> getUserList()
-	{
-		return userList;
-	}
-	public void setUser(Collection<UserDetails> user)
-	{
-		this.userList = user;
-	}
 	public int getVehicleId()
 	{
 		return vehicleId;

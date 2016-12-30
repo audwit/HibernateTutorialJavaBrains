@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.javabrains.koushik.dto.Address;
+import org.javabrains.koushik.dto.FourWheeler;
+import org.javabrains.koushik.dto.TwoWheeler;
 import org.javabrains.koushik.dto.UserDetails;
 import org.javabrains.koushik.dto.Vehicle;
 
@@ -13,34 +15,20 @@ public class HibernateTest
 {
     public static void main( String[] args )
     {
-        UserDetails user1 = new UserDetails();
-        user1.setUserName("Audwit");
-        user1.setJoiningDate(new Date());
         
-        UserDetails user2 = new UserDetails();
-        user2.setUserName("Faru");
-        user2.setJoiningDate(new Date());
+        TwoWheeler twoWheeler = new TwoWheeler();
+        twoWheeler.setVehicleName("Kawasaki");
+        twoWheeler.setSteeringHandle("steeringHandle");
         
-        Vehicle vehicle1 = new Vehicle();
-        vehicle1.setVehicleName("Camry");
-        
-        Vehicle vehicle2 = new Vehicle();
-        vehicle2.setVehicleName("Mercedez");
-        
-        user1.getVehicle().add(vehicle1);
-        user1.getVehicle().add(vehicle2);
-        
-        vehicle1.getUserList().add(user1);
-        vehicle2.getUserList().add(user1);
-        
+        FourWheeler fourWheeler = new FourWheeler();
+        fourWheeler.setVehicleName("BMW");
+        fourWheeler.setWheelSteering("Wheel Steering");
         
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(vehicle1);
-        session.save(vehicle2);
-        session.save(user1);
-        session.save(user2);
+        session.save(twoWheeler);
+        session.save(fourWheeler);
         
         session.getTransaction().commit();
         session.close();

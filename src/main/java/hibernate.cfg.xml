@@ -24,8 +24,10 @@
 
         <property name="hbm2ddl.auto">create</property>
         
-        <mapping class="org.javabrains.koushik.dto.UserDetails"/>
+<!--         <mapping class="org.javabrains.koushik.dto.UserDetails"/> -->
 		<mapping class="org.javabrains.koushik.dto.Vehicle"/>
+		<mapping class="org.javabrains.koushik.dto.TwoWheeler"/>
+		<mapping class="org.javabrains.koushik.dto.FourWheeler"/>
     </session-factory>
 
 </hibernate-configuration>
