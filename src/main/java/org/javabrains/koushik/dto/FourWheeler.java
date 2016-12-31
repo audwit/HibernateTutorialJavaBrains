@@ -1,8 +1,10 @@
 package org.javabrains.koushik.dto;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue(value="Car")
 public class FourWheeler extends Vehicle
 {
 	private String wheelSteering;
